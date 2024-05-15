@@ -13,6 +13,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bilboshop.R
 import com.example.bilboshop.databinding.ActivityMainBinding
+import com.example.bilboshop.ui.auth.LoginFragment
+import com.example.bilboshop.ui.cart.ShoppingCartFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,10 +29,6 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
-        binding.appBarMain.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -43,6 +41,20 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        binding.appBarMain.fab.setOnClickListener { /*view ->
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()*/
+            /*val newFragment = ShoppingCartFragment()
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.nav_host_fragment_content_main, newFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()*/
+
+            navView.setCheckedItem(R.id.nav_shoppingCart)
+            navController.navigate(R.id.nav_shoppingCart)
+
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -55,4 +67,5 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
 }

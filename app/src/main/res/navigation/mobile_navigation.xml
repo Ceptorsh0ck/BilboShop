@@ -22,4 +22,9 @@
         android:name="com.example.bilboshop.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_shoppingCart"
+        android:name="com.example.bilboshop.ui.cart.ShoppingCartFragment"
+        android:label="@string/menu_ShoppingCart"
+        tools:layout="@layout/fragment_shopping_cart" />
 </navigation>
