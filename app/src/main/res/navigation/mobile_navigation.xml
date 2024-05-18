@@ -10,6 +10,9 @@
         android:name="com.example.bilboshop.ui.shops.ShopsFragment"
         android:label="@string/menu_shops"
         tools:layout="@layout/fragment_shops" />
+    <action
+        android:id="@+id/action_nav_shops_to_nav_products"
+        app:destination="@id/nav_products" />
 
     <fragment
         android:id="@+id/nav_gallery"
@@ -27,4 +30,11 @@
         android:name="com.example.bilboshop.ui.cart.ShoppingCartFragment"
         android:label="@string/menu_ShoppingCart"
         tools:layout="@layout/fragment_shopping_cart" />
+    <fragment
+        android:id="@+id/nav_products"
+        android:name="com.example.bilboshop.ui.product.ProductFragment"
+        android:label="Products"
+        tools:layout="@layout/fragment_products" />
+
+
 </navigation>
