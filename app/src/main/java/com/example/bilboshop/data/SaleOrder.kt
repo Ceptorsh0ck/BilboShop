@@ -8,5 +8,5 @@ data class SaleOrder(
     val id: Int,
     val user: User,
     val date: String,
-    val orderLines: List<SaleOrderLine>
+    val orderLines: MutableList<SaleOrderLine>,
 ): Parcelable

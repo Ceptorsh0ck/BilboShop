@@ -51,6 +51,8 @@ class MainActivity : AppCompatActivity() {
             transaction.addToBackStack(null)
             transaction.commit()*/
 
+            findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.nav_shoppingCart)
+
             navView.setCheckedItem(R.id.nav_shoppingCart)
             navController.navigate(R.id.nav_shoppingCart)
 

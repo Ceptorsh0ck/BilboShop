@@ -4,19 +4,28 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import com.example.bilboshop.data.Product
+import com.example.bilboshop.data.SaleOrder
 import com.example.bilboshop.data.Shop
 import com.example.bilboshop.data.User
 import com.google.gson.Gson
 
 class UserPreferences {
 
+
+
     private val sharedPreferences: SharedPreferences by lazy {
         MyApp.context.getSharedPreferences(MyApp.context.getString(R.string.app_name), Context.MODE_PRIVATE)
     }
 
+    val exampleUser = User("Example User", "user1")
+    val userSaleOrder: SaleOrder = SaleOrder(1, exampleUser, "2024-01-01", mutableListOf())
+
+
     companion object {
         const val LOGGED_USER = "logged_user"
+
     }
+
 
 
     fun saveLoggedUser(user: User) {
@@ -68,11 +77,12 @@ class UserPreferences {
 
         listShop = listOf(shop1, shop2, shop3)
 
+
+
+
         return listShop
 
     }
-
-
 
     fun getLoggedUser(): User? {
         Log.i("USERPREFERENCES","GetLoggedUser")
@@ -84,5 +94,9 @@ class UserPreferences {
             null
         }
     }
+
+
+
+
 
 }

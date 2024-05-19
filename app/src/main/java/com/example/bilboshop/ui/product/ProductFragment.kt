@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bilboshop.R
 import com.example.bilboshop.data.Product
@@ -32,12 +33,18 @@ class ProductFragment : Fragment() {
     private val binding get() = _binding!!
 
 private fun onProductClicked(product: Product) {
-        val newFragment = GalleryFragment()
-    val args = Bundle()
-    args.putParcelable("product", product)
-    newFragment.arguments = args
-    val transaction = parentFragmentManager.beginTransaction()
-    transaction.replace(R.id.shopList, newFragment)
+    val shop = arguments?.getParcelable<Shop>("shop")
+    Log.i(ContentValues.TAG, "product clicked $product")
+
+
+    val args = Bundle().apply {
+        putParcelable("product", product)
+        if (shop != null) {
+            putParcelable("shop", shop)
+        }
+    }
+    findNavController().navigate(R.id.action_nav_products_to_product_details, args)
+
 
     }
     override fun onCreateView(

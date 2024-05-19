@@ -8,5 +8,5 @@ data class SaleOrderLine(
     val id: Int,
     val product: Product,
     val quantity: Int,
-    val orderId: SaleOrder
+    val shopId: String
 ): Parcelable
