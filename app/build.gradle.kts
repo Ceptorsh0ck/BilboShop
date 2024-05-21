@@ -41,6 +41,12 @@ android {
 
 dependencies {
 
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+    implementation("androidx.cardview:cardview:1.0.0")
+
+
+
     // ADD retrofit + gson para la conversion de strings en json a objetos y viceversa
     val retrofitVersion = "2.9.0"
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")

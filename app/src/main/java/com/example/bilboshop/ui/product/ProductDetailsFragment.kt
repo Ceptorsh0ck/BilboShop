@@ -9,17 +9,14 @@ import android.view.ViewGroup
 import android.widget.NumberPicker
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bilboshop.MyApp
 import com.example.bilboshop.R
 import com.example.bilboshop.data.Product
 import com.example.bilboshop.data.SaleOrderLine
 import com.example.bilboshop.data.Shop
-import com.example.bilboshop.databinding.FragmentProductsBinding
 import com.example.bilboshop.databinding.FragmentProductsDetailsBinding
-import com.example.bilboshop.databinding.FragmentShopsBinding
-import com.example.bilboshop.ui.gallery.GalleryFragment
-import com.example.bilboshop.utils.Resource
+import com.example.bilboshop.ui.orders.OrderFragment
+import com.google.android.material.snackbar.Snackbar
 
 class ProductDetailsFragment : Fragment() {
 
@@ -36,7 +33,7 @@ class ProductDetailsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private fun onProductClicked(product: Product) {
-        val newFragment = GalleryFragment()
+        val newFragment = OrderFragment()
         val args = Bundle()
         args.putParcelable("product", product)
         newFragment.arguments = args
@@ -63,6 +60,16 @@ class ProductDetailsFragment : Fragment() {
             setProductDetails(product)
         }
 
+        if (shop != null) {
+            if(shop.category == "Electronica"){
+                binding.shopImageBackground.setImageResource(R.drawable.tiendaelectronica)
+            }else if(shop.category == "Ropa"){
+                binding.shopImageBackground.setImageResource(R.drawable.tiendaropa)
+            }else if(shop.category == "Alimentacion"){
+                binding.shopImageBackground.setImageResource(R.drawable.tiendaalimentacion)
+            }
+        }
+
         val numberPicker: NumberPicker = binding.productQty
         numberPicker.minValue = 1
         numberPicker.maxValue = 99
@@ -81,6 +88,10 @@ class ProductDetailsFragment : Fragment() {
             MyApp.userPreferences.userSaleOrder?.let {saleOrder ->
             saleOrder.orderLines.add(saleOrderLine)
 
+            }
+            view?.let { it1 ->
+                Snackbar.make(it1, product.name + " añadido al carrito.", Snackbar.LENGTH_LONG)
+                    .show()
             }
 
             Log.i(ContentValues.TAG, "saleOrderLine ${MyApp.userPreferences.userSaleOrder}")

@@ -3,6 +3,8 @@ package com.example.bilboshop
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import com.example.bilboshop.data.Category
+import com.example.bilboshop.data.Order
 import com.example.bilboshop.data.Product
 import com.example.bilboshop.data.SaleOrder
 import com.example.bilboshop.data.Shop
@@ -18,7 +20,22 @@ class UserPreferences {
     }
 
     val exampleUser = User("Example User", "user1")
-    val userSaleOrder: SaleOrder = SaleOrder(1, exampleUser, "2024-01-01", mutableListOf())
+    var userSaleOrder: SaleOrder = SaleOrder(4, exampleUser, "2024-01-04", mutableListOf())
+    val categoryList = listOf(
+        Category(0,"Todo",R.drawable.all_category_icon),
+        Category(1,"Ropa",R.drawable.clothes_category_icon),
+        Category(2,"Alimentacion",R.drawable.food_category_icon),
+        Category(3,"Electronica",R.drawable.electronic_category_icon),
+        Category(4,"Electronica",R.drawable.electronic_category_icon),
+        Category(5,"Electronica",R.drawable.electronic_category_icon),
+        Category(6,"Electronica",R.drawable.electronic_category_icon)
+    )
+    val userAllOrders = mutableListOf(
+        Order(1,exampleUser,"2024-01-01",50.60,"Entregado"),
+        Order(2,exampleUser,"2024-01-02",10.5,"Entregado"),
+        Order(3,exampleUser,"2024-01-03",5.8,"Entregado")
+    )
+
 
 
     companion object {
@@ -53,7 +70,7 @@ class UserPreferences {
         val product4 = Product( 4,"Zapatos", 25.0, "Zapatos","Zapatos", "https://www.tiendaropa.com/zapatos.jpg")
         productListShop1 = listOf(product1, product2, product3, product4)
 
-        val shop1 = Shop(1, "Tienda de Ropa 1", "Ropa", "Calle 1", "999999999", "tiendaropa@gmail.com", "https://www.tiendaropa.com","img", "Tienda de Ropa 1", productListShop1)
+        val shop1 = Shop(1, "Textil Manoli", "Ropa", "Calle 1", "999999999", "tiendaropa@gmail.com", "https://www.tiendaropa.com","img", "Tienda de Ropa 1", productListShop1)
 
         //TIENDA 2
         val productListShop2: List<Product>
@@ -63,7 +80,7 @@ class UserPreferences {
         val product8 = Product( 8,"Yogures", 1.0, "Yogures","Lacteos", "https://www.tiendaalimentacion.com/yogures.jpg")
         productListShop2 = listOf(product5, product6, product7, product8)
 
-        val shop2 = Shop(2, "Tienda de Alimentacion", "Alimentacion", "Calle 2", "999999998", "tiendaalimentacion@gmail.com", "https://www.tiendaalimentacion.com","img", "Tienda de Alimentacion", productListShop2)
+        val shop2 = Shop(2, "Ultramarinos Paco", "Alimentacion", "Calle 2", "999999998", "tiendaalimentacion@gmail.com", "https://www.tiendaalimentacion.com","img", "Tienda de Alimentacion", productListShop2)
 
         //TIENDA 3
         val productListShop3: List<Product>
@@ -73,7 +90,7 @@ class UserPreferences {
         val product12 = Product( 12,"Cargador", 10.0, "Cargador","Electronica", "https://www.tiendaelectronica.com/cargador.jpg")
         productListShop3 = listOf(product9, product10, product11, product12)
 
-        val shop3 = Shop(3, "Tienda de Electronica", "Electronica", "Calle 3", "999999997", "tiendaelectronica@gmail.com", "https://www.tiendaelectronica.com","img", "Tienda de Electronica", productListShop3)
+        val shop3 = Shop(3, "Casa del Electricista", "Electronica", "Calle 3", "999999997", "tiendaelectronica@gmail.com", "https://www.tiendaelectronica.com","img", "Tienda de Electronica", productListShop3)
 
         listShop = listOf(shop1, shop2, shop3)
 

@@ -9,9 +9,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bilboshop.MyApp
 import com.example.bilboshop.R
+import com.example.bilboshop.data.Order
+import com.example.bilboshop.data.SaleOrder
 import com.example.bilboshop.data.SaleOrderLine
 import com.example.bilboshop.databinding.ActivityMainBinding
 import com.example.bilboshop.databinding.FragmentShoppingCartBinding
@@ -63,6 +67,28 @@ class ShoppingCartFragment : Fragment() {
             }
         }
 
+        binding.button3.setOnClickListener() {
+            view?.let { it1 ->
+                Snackbar.make(it1, "Pedido realizado", Snackbar.LENGTH_LONG)
+                    .show()
+            }
+
+            var cart = MyApp.userPreferences.userSaleOrder
+
+            var price = 0.0
+            for(order: SaleOrderLine in cart.orderLines) {
+                price += order.quantity * order.product.price
+            }
+
+            MyApp.userPreferences.userAllOrders.add(Order(cart.id,cart.user,cart.date,price,"Preparando"))
+            MyApp.userPreferences.userSaleOrder = SaleOrder(cart.id+1,cart.user,"2024-01-10",
+                mutableListOf()
+            )
+
+            mainActivityBinding.appBarMain.fab.show()
+            findNavController().navigate(R.id.nav_shops)
+        }
+
         computeTotalPrice()
 
 
@@ -93,6 +119,7 @@ class ShoppingCartFragment : Fragment() {
 
     override fun onDetach() {
         super.onDetach()
+        //findNavController().popBackStack()
         mainActivityBinding.appBarMain.fab.show()
     }
 

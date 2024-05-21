@@ -15,6 +15,8 @@ class ShopAdapter(
 
 ): ListAdapter <Shop, ShopAdapter.ShopViewHolder>(ShopDiffCallback()) {
     private lateinit var recyclerView: RecyclerView
+    private var fullShopList: List<Shop> = listOf()
+    private var filteredShopList: List<Shop> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopViewHolder {
         val binding = ShopItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -50,7 +52,26 @@ class ShopAdapter(
 
         }
     }
-   class ShopDiffCallback : DiffUtil.ItemCallback<Shop>() {
+
+    fun submitShops(shops: List<Shop>) {
+        fullShopList = shops
+        filteredShopList = shops
+        submitList(filteredShopList)
+    }
+
+
+    fun filterByCategory(category: String) {
+        filteredShopList = if (category == "Todo") {
+            fullShopList
+        } else {
+            Log.i("Filtro",category)
+            fullShopList.filter { it.category.equals(category, ignoreCase = true) }
+        }
+        submitList(filteredShopList)
+    }
+
+
+    class ShopDiffCallback : DiffUtil.ItemCallback<Shop>() {
         override fun areItemsTheSame(oldItem: Shop, newItem: Shop): Boolean {
             return oldItem.id == newItem.id
         }

@@ -14,8 +14,6 @@ import com.example.bilboshop.R
 import com.example.bilboshop.data.Product
 import com.example.bilboshop.data.Shop
 import com.example.bilboshop.databinding.FragmentProductsBinding
-import com.example.bilboshop.databinding.FragmentShopsBinding
-import com.example.bilboshop.ui.gallery.GalleryFragment
 import com.example.bilboshop.utils.Resource
 
 class ProductFragment : Fragment() {
@@ -82,6 +80,16 @@ private fun onProductClicked(product: Product) {
                 Resource.Status.LOADING -> {
 
                 }
+            }
+        }
+
+        if (shop != null) {
+            if(shop.category == "Electronica"){
+                binding.shopImageBackground.setImageResource(R.drawable.tiendaelectronica)
+            }else if(shop.category == "Ropa"){
+                binding.shopImageBackground.setImageResource(R.drawable.tiendaropa)
+            }else if(shop.category == "Alimentacion"){
+                binding.shopImageBackground.setImageResource(R.drawable.tiendaalimentacion)
             }
         }
 

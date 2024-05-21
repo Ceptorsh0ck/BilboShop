@@ -15,7 +15,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorPrimaryDark"
             app:popupTheme="@style/Theme.BilboShop.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -30,6 +30,6 @@
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
         app:fabSize="auto"
-        app:srcCompat="@drawable/baseline_shopping_cart_24" />
+        app:srcCompat="@drawable/shopping_cart_icon" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

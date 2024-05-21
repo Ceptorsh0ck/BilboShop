@@ -5,22 +5,35 @@
     android:id="@+id/productsLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".ui.shops.ShopsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/shopList"
-        android:layout_width="405dp"
-        android:layout_height="614dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="3dp"
-        android:layout_marginBottom="47dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/categorySelector"
+        android:layout_width="match_parent"
+        android:layout_height="119dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/shopList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/shopList"
+        android:layout_width="match_parent"
+        android:layout_height="582dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="15dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,14 +15,14 @@
         app:destination="@id/nav_products" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.bilboshop.ui.gallery.GalleryFragment"
+        android:id="@+id/nav_orders"
+        android:name="com.example.bilboshop.ui.orders.OrderFragment"
         android:label="@string/menu_orders"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.bilboshop.ui.slideshow.SlideshowFragment"
+        android:id="@+id/nav_profile"
+        android:name="com.example.bilboshop.ui.profile.ProfileFragment"
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_slideshow" />
     <fragment
@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/nav_products"
         android:name="com.example.bilboshop.ui.product.ProductFragment"
-        android:label="Products"
+        android:label="Productos"
         tools:layout="@layout/fragment_products" />
     <action
         android:id="@+id/action_nav_products_to_product_details"
@@ -42,7 +42,7 @@
     <fragment
         android:id="@+id/nav_productDetail"
         android:name="com.example.bilboshop.ui.product.ProductDetailsFragment"
-        android:label="Product Detail"
+        android:label="Detalles"
         tools:layout="@layout/fragment_products_details" />
 
 

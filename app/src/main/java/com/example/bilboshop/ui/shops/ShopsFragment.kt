@@ -6,24 +6,27 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bilboshop.R
+import com.example.bilboshop.data.Category
 import com.example.bilboshop.data.Shop
+import com.example.bilboshop.databinding.ActivityMainBinding
 import com.example.bilboshop.databinding.FragmentShopsBinding
-import com.example.bilboshop.ui.gallery.GalleryFragment
-import com.example.bilboshop.ui.product.ProductFragment
 import com.example.bilboshop.utils.Resource
 
 class ShopsFragment : Fragment() {
 
     private var _binding: FragmentShopsBinding? = null
     private lateinit var shopAdapter: ShopAdapter
+    private lateinit var categoriesAdapter: CategoriesAdapter
+    private lateinit var mainActivityBinding: ActivityMainBinding
+
+    private val categoriesViewModel: CategoriesViewModel by viewModels {
+        CategoriesViewModelFactory()
+    }
 
     private val shopsViewModel: ShopsViewModel by viewModels {
         ShopsViewModelFactory()
@@ -43,6 +46,11 @@ class ShopsFragment : Fragment() {
 
 
     }
+
+    private fun onCategoryClicked(category: Category) {
+        Log.i("Texto Category",category.toString())
+        shopAdapter.filterByCategory(category.name)
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -56,14 +64,34 @@ class ShopsFragment : Fragment() {
         val recyclerView = binding.shopList
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-
+        categoriesAdapter = CategoriesAdapter (::onCategoryClicked)
+        binding.categorySelector.adapter = categoriesAdapter
+        val categoriesList = binding.categorySelector
+        categoriesList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         shopsViewModel.items.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     Log.i(ContentValues.TAG, "sucess shop ${it.data}")
 
-                    shopAdapter.submitList(it.data)
+                    it.data?.let { it1 -> shopAdapter.submitShops(it1) }
+                }
+
+                Resource.Status.ERROR -> {
+
+                }
+
+                Resource.Status.LOADING -> {
+
+                }
+            }
+        }
+
+        categoriesViewModel.items.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Resource.Status.SUCCESS -> {
+                    Log.i(ContentValues.TAG, "sucess category ${it.data}")
+                    categoriesAdapter.submitList(it.data)
                 }
 
                 Resource.Status.ERROR -> {
@@ -86,4 +114,7 @@ class ShopsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }
+

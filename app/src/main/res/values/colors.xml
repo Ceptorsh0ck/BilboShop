@@ -7,4 +7,27 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!-- <color name="colorPrimary">#1a4487</color> -->
+    <color name="generalBackground">#133e85</color>
+
+
+    <color name="colorPrimary">#00468B</color>
+    <color name="colorPrimaryDark">#003366</color>
+    <color name="colorAccent">#0059B2</color>
+
+    <!-- Fondo -->
+    <color name="backgroundColor">#b1b3b5</color>
+
+    <!-- Textos -->
+    <color name="textPrimary">#002147</color>
+    <color name="textSecondary">#00468B</color>
+    <color name="priceColor">#1C75BC</color>
+
+    <!-- Botones -->
+    <color name="buttonColorPrimary">#00468B</color>
+    <color name="buttonColorAccent">#0059B2</color>
+    <color name="buttonTextColor">#FFFFFF</color>
+
+    <!-- Otros -->
+    <color name="shadowColor">#80000000</color>
 </resources>
