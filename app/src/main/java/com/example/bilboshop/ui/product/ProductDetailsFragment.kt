@@ -2,11 +2,14 @@ package com.example.bilboshop.ui.product
 
 import android.content.ContentValues
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.NumberPicker
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.bilboshop.MyApp
@@ -55,12 +58,11 @@ class ProductDetailsFragment : Fragment() {
         _binding = FragmentProductsDetailsBinding.inflate(inflater, container, false)
         val root: View = binding.root
         productAdapter = ProductAdapter (::onProductClicked)
-        binding.shopName.text = shop?.name
         if (product != null) {
             setProductDetails(product)
         }
 
-        if (shop != null) {
+        /*if (shop != null) {
             if(shop.category == "Electronica"){
                 binding.shopImageBackground.setImageResource(R.drawable.tiendaelectronica)
             }else if(shop.category == "Ropa"){
@@ -68,21 +70,21 @@ class ProductDetailsFragment : Fragment() {
             }else if(shop.category == "Alimentacion"){
                 binding.shopImageBackground.setImageResource(R.drawable.tiendaalimentacion)
             }
-        }
+        }*/
 
-        val numberPicker: NumberPicker = binding.productQty
+        /*val numberPicker: NumberPicker = binding.productQty
         numberPicker.minValue = 1
         numberPicker.maxValue = 99
         numberPicker.value = 1
         numberPicker.setOnValueChangedListener { picker, oldVal, newVal ->
             Log.i(ContentValues.TAG, "value changed $newVal")
-        }
+        }*/
 
         binding.addToCart.setOnClickListener {
             val saleOrderLine = SaleOrderLine(
                 0,
                 product!!,
-                binding.productQty.value,
+                binding.productQty.text.toString().toInt(),
                 shop!!.name
             )
             MyApp.userPreferences.userSaleOrder?.let {saleOrder ->
@@ -95,12 +97,37 @@ class ProductDetailsFragment : Fragment() {
             }
 
             Log.i(ContentValues.TAG, "saleOrderLine ${MyApp.userPreferences.userSaleOrder}")
-
-
-
-
-
         }
+
+        var count = 0
+
+        binding.btnIncrementar.setOnClickListener {
+            count = binding.productQty.text.toString().toInt() +1
+            binding.productQty.text = count.toString()
+        }
+
+        binding.btnDecrementar.setOnClickListener {
+            if (count > 1) {
+                count = binding.productQty.text.toString().toInt() -1
+                binding.productQty.text = count.toString()
+            }
+        }
+
+        binding.productQty.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                if (s != null) {
+                    binding.btnDecrementar.isEnabled = s.toString().toInt() >= 1
+
+                }
+            }
+        })
 
 
 

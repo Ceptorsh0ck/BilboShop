@@ -1,197 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/shopsLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/backgroundColor"
-    tools:context=".ui.shops.ShopsFragment">
+    android:padding="16dp">
 
-    <!-- Fondo de imagen -->
-    <ImageView
-        android:id="@+id/shopImageBackground"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2" />
-
-    <!-- Título de la tienda -->
-    <TextView
-        android:id="@+id/shopName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="#80000000"
-        android:padding="16dp"
-        android:text="Nombre de la Tienda"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Contenedor desplazable -->
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+    <!-- Marco alrededor de la imagen del artículo -->
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/shopName"
-        android:elevation="4dp">
+        android:background="@drawable/marco_imagen">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/productDetailsImage"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="Imagen del Artículo"
+            android:scaleType="centerCrop"
+            android:layout_margin="8dp"/>
+    </FrameLayout>
+
+    <!-- Nombre del artículo -->
+    <TextView
+        android:id="@+id/textProductNameDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombre del Artículo"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Descripción del artículo -->
+    <TextView
+        android:id="@+id/productDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Descripción del Artículo"
+        android:textSize="14sp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Precio del artículo -->
+    <TextView
+        android:id="@+id/productPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Precio: $0.00"
+        android:textSize="16sp"
+        android:textColor="@android:color/holo_green_dark"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Selector de unidades -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:background="@drawable/rounded_background"
-            android:elevation="4dp">
+            android:text="Unidades: "
+            android:textSize="16sp"/>
 
-            <!-- Imagen del producto -->
-            <ImageView
-                android:id="@+id/productDetailsImage"
-                android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:scaleType="centerCrop"
-                android:elevation="4dp" />
+        <Button
+            android:id="@+id/btnDecrementar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="-"
+            android:backgroundTint="@color/buttonColorAccent"
+            android:layout_marginRight="8dp"/>
 
-            <!-- Nombre del producto -->
-            <TextView
-                android:id="@+id/textProductNameDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Nombre del Producto"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/textPrimary"
-                android:elevation="4dp" />
+        <TextView
+            android:id="@+id/productQty"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textSize="16sp"
+            android:gravity="center"/>
 
-            <!-- Sección de añadir al carrito y ver variantes -->
-            <TextView
-                android:id="@+id/editTextText3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Descripción"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/textPrimary"
-                android:elevation="4dp" />
+        <Button
+            android:id="@+id/btnIncrementar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="+"
+            android:backgroundTint="@color/buttonColorAccent"
+            android:layout_marginLeft="8dp"/>
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/productDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Esta es una descripción detallada del producto."
-                android:textSize="16sp"
-                android:textColor="@color/textSecondary"
-                android:elevation="4dp" />
+    <!-- Botón de añadir al carrito -->
+    <Button
+        android:id="@+id/addToCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Añadir al Carrito"
+        android:backgroundTint="@color/buttonColorAccent"
+        android:layout_marginBottom="8dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                android:elevation="4dp">
+    <!-- Botón de ver variantes -->
+    <Button
+        android:id="@+id/btnVerVariantes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/buttonColorAccent"
+        android:text="Ver Variantes"/>
 
-                <!-- Precio -->
-                <TextView
-                    android:id="@+id/priceLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Precio"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/textPrimary" />
-
-                <TextView
-                    android:id="@+id/productPrice"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="20.00"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/priceColor" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                android:elevation="4dp">
-
-                <!-- Cantidad -->
-                <TextView
-                    android:id="@+id/qtyLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Cantidad"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/textPrimary" />
-
-                <NumberPicker
-                    android:id="@+id/productQty"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textColor="@color/textPrimary" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="24dp"
-                android:gravity="center"
-                android:elevation="4dp">
-
-                <Button
-                    android:id="@+id/addToCart"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="8dp"
-                    android:text="Añadir al carrito"
-                    android:backgroundTint="@color/buttonColorPrimary"
-                    android:textColor="@android:color/white" />
-
-                <Button
-                    android:id="@+id/variantesButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="8dp"
-                    android:text="Ver Variantes"
-                    android:backgroundTint="@color/buttonColorAccent"
-                    android:textColor="@android:color/white" />
-            </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -3,51 +3,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".ui.cart.ShoppingCartFragment">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/cartText"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:gravity="center"
-            android:text="Mi Carrito"
-            android:textAlignment="center"
-            android:textSize="24sp" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cartList"
             android:layout_width="match_parent"
-            android:layout_height="504dp">
+            android:layout_height="515dp">
 
         </androidx.recyclerview.widget.RecyclerView>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="5sp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="#F9F9F9">
 
             <TextView
                 android:id="@+id/totalPedidoLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Total Pedido:" />
+                android:text="Total Pedido:"
+                android:textSize="18sp"
+                android:textColor="#333333"
+                android:layout_marginBottom="4dp" />
 
             <TextView
                 android:id="@+id/totalOrderPrice"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="16sp"
+                android:textColor="#2E7D32"
+                android:gravity="center_vertical"
+                android:background="#E0F2F1"
+                android:padding="8dp" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Completar Pedido"
+                android:textColor="#FFFFFF"
+                android:background="@color/buttonColorPrimary"
+                android:layout_marginTop="24dp"
+                android:elevation="4dp" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Completar Pedido" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

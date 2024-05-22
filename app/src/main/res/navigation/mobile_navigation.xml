@@ -29,7 +29,13 @@
         android:id="@+id/nav_shoppingCart"
         android:name="com.example.bilboshop.ui.cart.ShoppingCartFragment"
         android:label="@string/menu_ShoppingCart"
-        tools:layout="@layout/fragment_shopping_cart" />
+        tools:layout="@layout/fragment_shopping_cart" >
+        <action
+            android:id="@+id/action_nav_shoppingCart_pop2"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/nav_shoppingCart"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/nav_products"
         android:name="com.example.bilboshop.ui.product.ProductFragment"

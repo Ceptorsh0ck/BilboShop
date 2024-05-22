@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_shops, R.id.nav_orders, R.id.nav_profile,R.id.nav_shoppingCart
+                R.id.nav_shops, R.id.nav_orders, R.id.nav_profile
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -51,8 +51,6 @@ class MainActivity : AppCompatActivity() {
 
             findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.nav_shoppingCart)
 
-            navView.setCheckedItem(R.id.nav_shoppingCart)
-            navController.navigate(R.id.nav_shoppingCart)
 
         }
 
